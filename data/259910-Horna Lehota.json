@@ -1,0 +1,14 @@
+{
+    "location": "2163391",
+    "location_name": "Horna Lehota",
+    "timestamp": "2025-01-27T15:40:05.752707+00:00",
+    "lastUpdated_from_api": "2025-01-27T13:00:00+00:00",
+    "values": [
+        {
+            "no2": 0.691188
+        },
+        {
+            "o3": 73.97
+        }
+    ]
+}

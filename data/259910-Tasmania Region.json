@@ -1,0 +1,14 @@
+{
+    "location": "10890",
+    "location_name": "Tasmania Region",
+    "timestamp": "2025-01-26T22:37:26.248920+00:00",
+    "lastUpdated_from_api": "2025-01-27T12:54:11+00:00",
+    "values": [
+        {
+            "pm10": 12.0
+        },
+        {
+            "pm25": 3.0
+        }
+    ]
+}

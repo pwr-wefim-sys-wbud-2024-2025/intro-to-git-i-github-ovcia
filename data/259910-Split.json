@@ -1,0 +1,11 @@
+{
+    "location": "3081123",
+    "location_name": "Split",
+    "timestamp": "2025-01-27T17:02:58.878759+00:00",
+    "lastUpdated_from_api": "2025-01-27T14:00:00+00:00",
+    "values": [
+        {
+            "pm10": 19.1
+        }
+    ]
+}

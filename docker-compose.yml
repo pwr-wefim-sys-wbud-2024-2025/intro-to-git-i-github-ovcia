@@ -1,0 +1,42 @@
+version: "3.8"  
+services:  # definicja kontenerów, które będą uruchomione przez docker compose
+  
+  mqtt_module:  # def usługi o nazwie "mqtt_module"
+    build:  # Definiuje sposób, w jaki obraz kontenera jest budowany. Określa kontekst i ścieżkę do pliku Dockerfile
+      context: .  # katalog, w którym dockerfile jest poszukiwany, "." oznacza bieżący katalog
+      dockerfile: Dockerfile  # nazwa pliku Dockerfile, który będzie używany do budowania obrazu.
+      
+    environment:  # zmienne środowiskowe, które będą dostępne w kontenerze.
+      - BROKER_ADDRESS=167.172.164.168 # adres brokera MQTT
+      - BROKER_PORT=1883  # port MQTT
+      - MQTT_USER=student  # użytkownik MQTT
+      - MQTT_PASSWORD=sys-wbud  # hasło MQTT
+      - STUDENT_ID=259910  # indeks, przekazywany jako zmienna środowiskowa do aplikacji
+      - LOCATIONS=3081123 # lokalizacja, z której dane będą pobierane
+      - DATA_FOLDER=/app/data  # katalog, w którym będą przechowywane dane w kontenerze
+      - API_KEY=e3b38646e849e4d199ef8db4dec0274ca0244ff83906be41e3b632d2f5abb345 #klucz api wymagany do żadania get
+      - API_URL=https://api.openaq.org/v2/locations #url api 
+
+
+    volumes:  # mapowanie folderów pomiędzy hostem a kontenerem.
+      - ./data:/app/data  # mapowanie lokalnego katalogu "data" z hosta na katalog "/app/data" w kontenerze
+
+    command: python mqtt_module.py  # komenda, która zostanie wykonana w kontenerze po jego uruchomieniu (uruchomienie skryptu Python)
+    restart: unless-stopped  # restartowanie kontenera, chyba że użytkownik ręcznie go zatrzyma
+
+  web_ui:  # definicja usługi o nazwie "web_ui"
+    build:  # określenie procesu budowy obrazu dla usługi
+      context: .  # katalog, w którym Dockerfile jest poszukiwany, "." oznacza bieżący katalog.
+      dockerfile: Dockerfile  # nazwa pliku Dockerfile, który będzie używany do budowania obrazu.
+
+    ports:  # mapowanie portów pomiędzy hostem a kontenerem.
+      - "5000:5000"  # mapowanie portu 5000 na hoście do portu 5000 w kontenerze, co umożliwia dostęp do aplikacji webowej
+
+    environment:  # zmienne środowiskowe, które będą dostępne w kontenerze
+      - DATA_FOLDER=/app/data  # ścieżka do katalogu z danymi w kontenerze
+
+    volumes:  # mapowanie folderów pomiędzy hostem a kontenerem
+      - ./data:/app/data  # mapowanie lokalnego katalogu "data" z hosta na katalog "/app/data" w kontenerze
+
+    command: python web_ui.py  # komenda, która zostanie wykonana w kontenerze po jego uruchomieniu (uruchomienie skryptu Python)
+    restart: unless-stopped  # restartowanie kontenera, chyba że użytkownik ręcznie go zatrzyma

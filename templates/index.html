@@ -1,0 +1,49 @@
+<!DOCTYPE html> 
+<html lang="pl-PL"> <!-- język - polski, hopefully -->
+<meta charset="UTF-8"> <!-- kodowanie znaków na UTF-8 -->
+
+<head>
+   
+    <title>Pomiary</title> <!-- tytuł strony -->
+    <style>
+        body {
+            background-color: #87CEEB; /* kolor tła */
+            color: #000; /* kolor tekstu */
+            font-family: Amarillo, sans-serif; /* czcionka, bezszeryfowa */
+            display: flex; /* flexbox */
+            flex-direction: column; /* środkowanie w kolumnie - tytuł+pomiary */
+            align-items: center; /* wyśrodkowanie w poziomie */
+            justify-content: center; /* wyśrodkowanie w pionie */
+        }
+
+        h1 {
+            margin-bottom: 20px; /* odstęp dolny nagłówka */
+        }
+
+
+        li {
+            margin-bottom: 20px; /* odstęp między elementami listy */
+            background: #a8dcf8; /* tło elementów listy */
+            font-family: Calibri, sans-serif;
+            padding: 15px; /* wewnętrzne odstępy w elementach listy */
+            box-shadow: 0 6px 6px rgba(26, 9, 98, 0.1); /* cień */
+            max-width: 600px; /* maksymalna szerokość elementów listy */
+            text-align: left; /* wyrównanie tekstu do lewej */
+            word-wrap: break-word; /* Zawijanie długiego tekstu */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Pomiary:</h1> <!-- nagłówek strony -->
+
+    <ul>
+        {% for measurement in measurements %} <!-- iteracja po liście "measurements" za pomocą Jinja2 -->
+            <li>
+                <light>{{ measurement.file }}</light>: <!-- wyświetlenie nazwy pliku -->
+                <pre>{{ measurement.data | tojson(indent=4) }}</pre> <!-- wyświetlenie danych w formacie JSON, tojson jest funkcją Flaska, która zamienia dane na format JSON -->
+            </li>
+        {% endfor %} <!--zakończenie pętli for -->
+    </ul>
+</body>
+</html> 

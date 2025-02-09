@@ -1,0 +1,20 @@
+{
+    "location": "2163350",
+    "location_name": "Liptovsky Mikulas",
+    "timestamp": "2025-01-27T15:57:11.626070+00:00",
+    "lastUpdated_from_api": "2025-01-27T14:00:00+00:00",
+    "values": [
+        {
+            "no2": 6.34115
+        },
+        {
+            "so2": 2.7124
+        },
+        {
+            "pm25": 2.4167
+        },
+        {
+            "pm10": 11.257
+        }
+    ]
+}
